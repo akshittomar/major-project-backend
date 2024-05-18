@@ -49,6 +49,7 @@ router.post('/addcrop',async (req,res)=> {
     })
     const savedCrop = await crop.save()
     console.log("THIS CROP GOT SAVED "+savedCrop)
+    //ml
     res.send(savedCrop)
     }
     catch(error){

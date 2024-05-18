@@ -5,6 +5,10 @@ const CropsSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,//foreign key
         ref:'USER',//foreign key refrencing user database 
     },
+    ph: {
+        type: Number,
+        required: true
+    },
     
     rain: {
         type: Number,
