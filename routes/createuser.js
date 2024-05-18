@@ -35,7 +35,7 @@ const errors = validationResult(req);
  
  
 
-    user = await  User.create({email:req.body.email,name:req.body.email
+    user = await  User.create({email:req.body.email,name:req.body.name
       
       
     })
