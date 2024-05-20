@@ -10,7 +10,7 @@ router.post('/croprecommend', async (req, res) => {
     try {
         const { email, rain, temp, humid, nitro, p, k, ph } = req.body;
 
-        console.log("email yeh hai" + email);
+        console.log("data " + email +" "+rain +" "+ temp +" "+humid + " "+nitro + " "+p+" "+k+" "+ph);
         const user = await User.findOne({ email: email });
         console.log("user yeh hai" + user);
 

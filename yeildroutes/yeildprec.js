@@ -129,6 +129,49 @@ router.post ('/fetchallyeild',async (req,res)=> {
     
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+        router.delete('/delete/:id', async(req,res)=>{
+    
+    
+            try{
+                
+                
+                
+                
+                
+                
+            
+        
+            let crop =await Yeild.findById(req.params.id);
+            if(!crop){
+               return res.status(404).send("NOT FOUND !!!!!");
+            }
+            const user = await User.findOne({email:req.body.email})
+            
+        
+            if(crop.user.toString() !== user._id.toString())
+            {
+                return res.status(401).send("X X X NOT ALLOWED X X X X");
+            }
+           crop = await Yeild.findByIdAndDelete(req.params.id) ;
+           res.json({"SUCCESS":" DELETED ", crop:crop});
+            }
+            catch(error){
+                console.error(error.message);
+                res.status(500).send("INTERNAL SERVER  ERROR ");
+            }
+        })
+    
+    
+    
+
 
 
 module.exports = router;

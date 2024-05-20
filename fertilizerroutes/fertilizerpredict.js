@@ -103,4 +103,70 @@ fertilizer_name = dtc.predict(user_input_df)[0]
     }
 });
 
+
+
+router.post ('/fetchallfertilizer',async (req,res)=> {
+   
+    try{
+        const email = req.body.email ;
+        console.log("email "+ email);
+        const user = await User.findOne({email:email});
+        console.log("user "+ user);
+        const crops = await Fertilizer.find({ user: user._id });
+        
+    
+    
+    
+    res.json(crops);
+    }
+    catch(error)
+    {
+        console.error(error.message);
+        res.status(500).send("INTERNAL SERVER  ERROR ");
+    }
+    })
+
+
+
+
+
+
+
+
+    router.delete('/delete/:id', async(req,res)=>{
+
+
+        try{
+            
+            
+            
+            
+            
+            
+        
+    
+        let crop =await Fertilizer.findById(req.params.id);
+        if(!crop){
+           return res.status(404).send("NOT FOUND !!!!!");
+        }
+        const user = await User.findOne({email:req.body.email})
+        
+    
+        if(crop.user.toString() !== user._id.toString())
+        {
+            return res.status(401).send("X X X NOT ALLOWED X X X X");
+        }
+       crop = await Fertilizer.findByIdAndDelete(req.params.id) ;
+       res.json({"SUCCESS":" DELETED ", crop:crop});
+        }
+        catch(error){
+            console.error(error.message);
+            res.status(500).send("INTERNAL SERVER  ERROR ");
+        }
+    })
+
+
+
+
+
 module.exports = router;
