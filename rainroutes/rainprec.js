@@ -8,6 +8,14 @@ const path = require('path');
 
 
 // sabhyamittal
+
+
+
+
+
+
+
+// jai mata di 
 router.post('/rainrecommend', async (req, res) => {
     try {
         const { State, District, Month, email } = req.body;
