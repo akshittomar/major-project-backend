@@ -72,10 +72,16 @@ prediction = pyodide.globals.get('predicted_rainfall');
         // await pyodide.runPythonAsync(`exec(code, globals())`, pyodideGlobals);
 
         // prediction = pyodide.globals.get('predicted_rainfall').toString();
-        console.log("Predicted rain:", prediction);
-
+        
+        function formatNumber(value) {
+            // Use toFixed(2) to ensure the number has exactly two decimal places
+            const formatted = value.toFixed(2);
+            // Convert the formatted string back to a number
+            return parseFloat(formatted);
+        }
+        console.log("Predicted rain:", formatNumber(prediction));
         const rainData = new Rain({
-            State, District, Month, user: user._id, prediction, Prediction: prediction
+            State, District, Month, user: user._id, prediction, Prediction: formatNumber(prediction)
         });
         const saved = await rainData.save();
         console.log("THIS Rain GOT Predicted " + saved);
